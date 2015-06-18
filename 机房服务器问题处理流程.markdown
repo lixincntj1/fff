@@ -1,0 +1,60 @@
+## 机房服务器问题处理流程 ##
+
+> 描述：接到报警或机房通知，服务器、带宽出现异常，如何处理？
+[服务器位置图][1]
+
+- **服务器故障处理流程**
+```flow
+st=>start: 接到报警
+op1=>operation: 通知机房服务器所在位置 
+               插显示器，屏幕有无报错
+               查看服务器前面板，有无报错
+cond=>condition: Yes or No?
+op2=>operation: 直接重启服务器 Ctrl+alt+delete
+op3=>operation: 拍照留存，通过邮件或其他方式发给我们
+                重启服务器Ctrl+alt+delete
+op4=>operation: 登陆服务器，查明问题原因
+e=>end
+st->op1->cond
+cond(yes)->op3->op4->e
+cond(no)->op2->op4->e
+```
+-----
+- **带宽故障处理流程**
+```flow
+st=>start: 接到报警
+op1=>operation: 通知机房协助抓包，查看流量高IP
+                查看cacti，服务器外网网卡流量有无异常突高 
+cond=>condition: Yes or No?
+op2=>operation: 
+op3=>operation: 找到服务器IP，分析该机由什么服务引起
+op4=>operation: 登陆服务器，查明问题原因
+e=>end
+
+st->op1->cond
+cond(yes)->op3->e
+cond(no)->
+```
+----
+ - 发邮件通知sgbg@mapbar.com邮件组
+   - 当时间超过5分钟以上并已影响所有服务，确定是**不可用还是响应慢**    
+   -  邮件主题：XXX某机房网络出现问题，响应缓慢，运维正在紧急处理中
+   -  邮件内容：RT
+ 
+ - 注：所有事故当天必须找出原因，不能过夜
+
+ 
+
+ 
+
+     
+
+
+
+  [1]: https://git.mapbar.com/yw/doc/blob/master/%E5%86%85%E5%A4%96%E7%BD%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9B%B8%E5%85%B3/%E6%9C%8D%E5%8A%A1%E5%99%A8/%E4%BA%92%E8%81%94%E9%80%9A%E6%9C%BA%E6%88%BF%E6%9C%BA%E6%9F%9CIP.md
+  [2]: https://git.mapbar.com/yw/doc/blob/master/%E5%86%85%E5%A4%96%E7%BD%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9B%B8%E5%85%B3/%E6%9C%8D%E5%8A%A1%E5%99%A8/%E4%BA%92%E8%81%94%E9%80%9A%E6%9C%BA%E6%88%BF%E6%9C%BA%E6%9F%9CIP.md
+  [3]: http://116.213.115.25:8888/cacti/
+
+ - 标题
+
+==
